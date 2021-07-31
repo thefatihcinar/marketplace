@@ -1,8 +1,14 @@
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 function App() {
   return (
     <div className="App">
-      Welcome to the Rocket Store!
+      <Header></Header>
+      <main>
+          <h1>WELCOME TO OUR WEBSITE</h1>
+      </main>
+      <Footer></Footer>
     </div>
   );
 }
