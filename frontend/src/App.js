@@ -1,5 +1,9 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
+/* Import Bootswatch */
+import './bootstrap.min.css' 
+
+
 
 function App() {
   return (
