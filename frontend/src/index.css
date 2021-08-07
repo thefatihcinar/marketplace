@@ -15,3 +15,7 @@ code {
 main {
   height: 80vh;
 }
+
+a:link {
+  text-decoration: none;
+}
