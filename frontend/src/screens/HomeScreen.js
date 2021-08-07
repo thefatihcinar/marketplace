@@ -7,7 +7,7 @@ const HomeScreen = () => {
     return (
         <div>
             <Container>
-                <h1>Latest Products</h1>
+                <h1 className='mt-3'>Latest Products</h1>
                 <Row>
                     {
                         products.map(product => (
