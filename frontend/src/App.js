@@ -5,7 +5,8 @@ import './bootstrap.min.css'
 /* Import React-Bootstrap*/
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
-
+/* Import Screens */
+import HomeScreen from './screens/HomeScreen'
 
 
 function App() {
@@ -13,10 +14,9 @@ function App() {
     <div className="App">
       <Header></Header>
       <main className='pt-1'>
-          <h1>WELCOME TO OUR WEBSITE</h1>
+          <HomeScreen/>
       </main>
       <Footer></Footer>
-      <Button variant="primary">Deneme Buton</Button>
     </div>
   );
 }
