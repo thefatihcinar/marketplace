@@ -4,15 +4,15 @@ import Footer from './components/Footer'
 import './bootstrap.min.css' 
 /* Import Screens */
 import HomeScreen from './screens/HomeScreen'
-
+import { BrowserRouter as Router, Route} from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Header></Header>
-      <HomeScreen/>
+      <Route path = '/' component = {HomeScreen} exact></Route>
       <Footer></Footer>
-    </div>
+    </Router>
   );
 }
 
