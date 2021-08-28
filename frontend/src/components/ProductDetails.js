@@ -24,7 +24,7 @@ const ProductDetails = ({ match }) => {
                 </Col>
                 {/* Product Details Part*/}
                 <Col md={3}>
-                    <ListGroup variant='light'>
+                    <ListGroup variant='flush'>
                         <ListGroup.Item>
                             <h3>{product.name}</h3>
                         </ListGroup.Item>
