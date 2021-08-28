@@ -1,9 +1,12 @@
-import React from 'react'
-import products from '../products'
+import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 
 const HomeScreen = () => {
+
+    const [products, setProducts] = useState([]);
+    
+
     return (
         <div>
             <Container>
