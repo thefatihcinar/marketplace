@@ -1,0 +1,22 @@
+{
+  "name": "rocket-store",
+  "version": "1.0.0",
+  "description": "an e-commerce web application developed with MERN stack",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trfatihcinar/rocket-store.git"
+  },
+  "author": "Fatih Çınar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trfatihcinar/rocket-store/issues"
+  },
+  "homepage": "https://github.com/trfatihcinar/rocket-store#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
