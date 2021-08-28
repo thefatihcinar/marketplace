@@ -1,10 +1,15 @@
 //CommonJS syntax: const express = require('express');
 import express from 'express'
+import dotenv from 'dotenv'
 import products from './data/products.js'
+
+dotenv.config();
 
 const app = express();
 
-app.listen(5000, console.log('Server is running on port 5000'));
+const PORT = process.env.PORT;
+
+app.listen(PORT || 5000, console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`));
 
 app.get("/", (request, response) => (response.send("The server is running.")));
 
