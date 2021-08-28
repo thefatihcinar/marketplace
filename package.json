@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "an e-commerce web application developed with MERN stack",
   "main": "server.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "start": "node backend/server"
   },
@@ -19,5 +19,8 @@
   "homepage": "https://github.com/trfatihcinar/rocket-store#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
