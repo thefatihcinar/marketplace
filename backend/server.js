@@ -13,3 +13,9 @@ app.get("/products", (request, response) => (
     response.json(products)
 ));
 
+/* Fetch a specific product */
+app.get("/products/:id", (request, response) => {
+    let productId = request.params.id;
+    let product = products.find( p => p._id == productId);
+    response.json(product);
+})
