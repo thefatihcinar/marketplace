@@ -41,6 +41,29 @@ const ProductDetails = ({ match }) => {
                 </Col>
                 {/* Order Part */}   
                 <Col md={3}>
+                    <ListGroup>
+                        <ListGroup.Item>
+                            <Row>
+                                <Col>Price:</Col>
+                                <Col><strong>${product.price}</strong></Col>
+                            </Row>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <Row>
+                                <Col>Status:</Col>
+                                <Col>{product.countInStock > 0 ? "In Stock" : "Out of Stock"}</Col>
+                            </Row>
+                        </ListGroup.Item>
+                    </ListGroup>
+                    <ListGroup.Item>
+                        <LinkContainer to='/' className='text-center'>
+                            <Button className='btn col-12' 
+                                type='button' 
+                                variant='dark'
+                                disabled={product.countInStock === 0 ? true: false}
+                                >Add to Cart</Button>
+                        </LinkContainer>
+                    </ListGroup.Item>
                 </Col>
             </Row>
         </Container>
