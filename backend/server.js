@@ -10,6 +10,7 @@ import productRouter from './routes/productRoutes.js'
 
 /* Middleware */
 import notFound from './middleware/notFound.js'
+import errorHandler from './middleware/errorHandler.js'
 
 dotenv.config();
 
@@ -30,18 +31,5 @@ app.use("/api/products", productRouter);
 /* Not Found Middleware */
 app.use(notFound);
 
-
-/* Override the default Error Handler Middleware */
-app.use((err, request, response, next) => {
-    /* the custom error handler middleware, responsible for when there is an error */
-    /* decide the status code */
-    let statusCode = response.statusCode === 200 ? 500 : response.statusCode;
-    // make 200 status codes, 500 
-    response.status(statusCode);
-    // return the error
-    response.json( {
-        message: err.message,
-        stack: process.env.NODE_ENV == 'production' ? null : err.stack
-    });
-
-});
+/* Use Custom Error Handler Middleware */
+app.use(errorHandler);
