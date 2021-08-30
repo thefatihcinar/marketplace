@@ -5,7 +5,9 @@ import Product from '../models/productModel'
 
 const router = express.Router()
 
-// Path: /api/products
+// @desc    get all the products
+// @route   GET /api/products
+// @access  Public 
 router.get("/", async (request, response) => {
     /* This function will return all the products */
 
@@ -14,7 +16,9 @@ router.get("/", async (request, response) => {
     response.json(products)
 });
 
-// Path: /api/products/:id
+// @desc    get a single product by id
+// @route   GET /api/products/:id
+// @access  Public
 router.get("/:id", async (request, response) => {
     /* this function will return a single product */
 
