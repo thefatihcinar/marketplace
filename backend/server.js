@@ -8,6 +8,9 @@ import connectDB from './configurations/database.js'
 /* Routers */
 import productRouter from './routes/productRoutes.js'
 
+/* Middleware */
+import notFound from './middleware/notFound.js'
+
 dotenv.config();
 
 /* connect to the MongoDB first */
@@ -25,15 +28,7 @@ app.get("/", (request, response) => (response.send("The server is running.")));
 app.use("/api/products", productRouter);
 
 /* Not Found Middleware */
-app.use((request, response, next) => {
-    /* this middleware is run if there is no route matched,
-        it is placed close to the end of the middleware(request) pipeline */
-
-    const error = new Error(`Not found - ${request.originalUrl}`);
-    
-    res.status(404)
-    next(error)
-});
+app.use(notFound);
 
 
 /* Override the default Error Handler Middleware */
