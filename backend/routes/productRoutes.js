@@ -1,7 +1,7 @@
 /* all the routes that start with /api/products will be forwarded 
 to this router by the server.js i.e. main app */
 import express from 'express'
-import Product from '../models/productModel'
+import Product from '../models/productModel.js'
 
 const router = express.Router()
 
