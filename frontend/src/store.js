@@ -1,7 +1,7 @@
-import { createStore, combineReducers } from 'react-redux'
+import { createStore, combineReducers } from 'redux'
 
 /* Import Reducers */
-import productListReducer from './reducers/productReducers'
+import { productListReducer } from './reducers/productReducers'
 
 let reducers = combineReducers({
     productList: productListReducer
