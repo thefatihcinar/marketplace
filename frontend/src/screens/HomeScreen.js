@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Container, Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 import axios from 'axios'
+/* Actions */
+import { listProducts } from '../actions/productActions'
 
 const HomeScreen = () => {
 
     // Get the global level state from redux
     let { products, loading, error} = useSelector( state => state.productList);
+
+    const dispatch = useDispatch();
     
     useEffect(() => {
-       
-    
-    }, []);
+        dispatch(listProducts())
+    }, [dispatch]);
 
     return (
         <div>
