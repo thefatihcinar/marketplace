@@ -5,20 +5,13 @@ import axios from 'axios'
 
 const HomeScreen = () => {
 
-    const [products, setProducts] = useState([]);
     
     useEffect(() => {
-        // This function is called when the component first loads and after each state change
-        const fetchProducts = async () => {
-            let {data} = await axios.get("/api/products");
-
-            // Update the state, i.e. set products as state
-            setProducts(data) // remember products as statE
-        };
-
-        // Call fetchProducts function
-        fetchProducts();
+       
+    
     }, []);
+
+    let products = []
 
     return (
         <div>
