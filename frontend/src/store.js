@@ -1,6 +1,11 @@
 import { createStore, combineReducers } from 'react-redux'
 
-let reducers = combineReducers({});
+/* Import Reducers */
+import productListReducer from './reducers/productReducers'
+
+let reducers = combineReducers({
+    productList: productListReducer
+});
 
 const store = createStore(reducers);
 
