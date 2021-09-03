@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Row, Col, Container, Button, Image, ListGroup, ListGroupItem } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react'
+import { Row, Col, Container, Button, Image, ListGroup, ListGroupItem, Form } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import Rating from './Rating'
 import Loader from './Loader'
@@ -11,6 +11,9 @@ import { productDetails } from '../actions/productActions'
 const ProductDetails = ({ match }) => {
 
     let productId = match.params.id; // Get the product id from the route
+
+    let [quantity, setQuantity] = useState(0);
+    /* this state stores the amount to buy *
 
     /* get the global state for this product */
     let { product , loading, error} = useSelector( state => state.productDetails)
@@ -69,6 +72,7 @@ const ProductDetails = ({ match }) => {
                                         <Col>{product.countInStock > 0 ? "In Stock" : "Out of Stock"}</Col>
                                     </Row>
                                 </ListGroup.Item>
+                                
                             </ListGroup>
                             <ListGroup.Item>
                                 <LinkContainer to='/' className='text-center'>
