@@ -40,9 +40,9 @@ export const productDetails = (id) => async(dispatch) => {
     } catch (error) {
         // an error occured while connecting to the api
         dispatch( { type: PRODUCT_DETAILS_FAIL, 
-            error: error.response && error.response.data.message
-                   ? error.response.data.message
-                   : error.message
+            payload: error.response && error.response.data.message
+                             ? error.response.data.message
+                             : error.message
         } )
     }
 }
