@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 /* Actions */
 import { productDetails } from '../actions/productActions'
 
-const ProductDetails = ({ match }) => {
+const ProductDetails = ({ history, match }) => {
 
     let productId = match.params.id; // Get the product id from the route
 
@@ -24,7 +24,11 @@ const ProductDetails = ({ match }) => {
         dispatch(productDetails(productId))
     }, [dispatch, productId]);
 
-    
+    /* this function is responsible for handling add to cart operations */
+    const addToCartHandler = () => {
+        history.push(`/cart/${productId}?quantity=${quantity}`)
+    }
+
     return (
         <Container>
             {loading ? (<Loader/>)
@@ -94,13 +98,13 @@ const ProductDetails = ({ match }) => {
                                 : ""}
                             </ListGroup>
                             <ListGroup.Item>
-                                <LinkContainer to='/' className='text-center'>
-                                    <Button className='btn col-12' 
-                                        type='button' 
-                                        variant='dark'
-                                        disabled={product.countInStock === 0 ? true: false}
-                                        >Add to Cart</Button>
-                                </LinkContainer>
+                                <Button className='btn col-12' 
+                                            type='button' 
+                                            variant='dark'
+                                            disabled={product.countInStock === 0 ? true: false}
+                                            onClick={addToCartHandler}
+                                            >Add to Cart
+                                </Button>
                             </ListGroup.Item>
                         </Col>
                     </Row>
