@@ -10,7 +10,7 @@ import { productDetails } from '../actions/productActions'
 
 const ProductDetails = ({ match }) => {
 
-    const productId = match.params.id; // Get the product id from the route
+    let productId = match.params.id; // Get the product id from the route
 
     /* get the global state for this product */
     let { product , loading, error} = useSelector( state => state.productDetails)
@@ -21,10 +21,11 @@ const ProductDetails = ({ match }) => {
         dispatch(productDetails(productId))
     }, [dispatch, productId]);
 
+    
     return (
         <Container>
-            {loading ? <Loader/>
-             : error ? <Message variant="danger" theMessage={error}/>
+            {loading ? (<Loader/>)
+             : error ? (<Message variant="danger" theMessage = {error}/>)
              : (<Container>
                 <LinkContainer to='/'>
                     <Button variant='light' className='my-3 p-2'>
