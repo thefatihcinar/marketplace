@@ -1,27 +1,15 @@
-import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Row, Col, Container, Button, Image, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import Rating from './Rating'
 
 const ProductDetails = ({ match }) => {
 
-    const [product, setProduct] = useState({}); 
-    // this functional component better have a product as its state, and it will be updated
-
     const productId = match.params.id; // Get the product id from the route
 
     useEffect(() => {
-        // this function will be called first when the component loads and after each state change
-        const fetchProduct = async () => {
-            let { data } = await axios.get(`/api/products/${productId}`);
-
-            setProduct(data); // update the state
-        };
-
-        // call this fetch function
-        fetchProduct();
-    }, [productId]);
+      
+    }, []);
 
     return (
         <Container>
