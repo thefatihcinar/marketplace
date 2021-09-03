@@ -72,7 +72,26 @@ const ProductDetails = ({ match }) => {
                                         <Col>{product.countInStock > 0 ? "In Stock" : "Out of Stock"}</Col>
                                     </Row>
                                 </ListGroup.Item>
-                                
+                                {product.countInStock > 0 ?
+                                    <ListGroup.Item>
+                                        <Row>
+                                            <Col>Quantity:</Col>
+                                            <Col>
+                                                <Form.Control
+                                                    as="select"
+                                                    value={quantity}
+                                                    onChange={ (event) => (setQuantity(event.target.value))}>
+                                                    {
+                                                        [...Array(product.countInStock).keys()]
+                                                            .map( (index) => (
+                                                                <option key={index+1} value={index+1}>{index+1}</option>
+                                                            ))
+                                                    }
+                                                </Form.Control>
+                                            </Col>
+                                        </Row>
+                                </ListGroup.Item>
+                                : ""}
                             </ListGroup>
                             <ListGroup.Item>
                                 <LinkContainer to='/' className='text-center'>
