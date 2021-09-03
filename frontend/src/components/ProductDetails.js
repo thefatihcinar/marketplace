@@ -2,14 +2,22 @@ import React, { useEffect } from 'react'
 import { Row, Col, Container, Button, Image, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import Rating from './Rating'
+import { useDispatch, useSelector } from 'react-redux'
+/* Actions */
+import { productDetails } from '../actions/productActions'
 
 const ProductDetails = ({ match }) => {
 
     const productId = match.params.id; // Get the product id from the route
 
+    /* get the global state for this product */
+    let { product , loading, error} = useSelector( state => state.productDetails)
+
+    const dispatch = useDispatch();
+
     useEffect(() => {
-      
-    }, []);
+        dispatch(productDetails(productId))
+    }, [dispatch]);
 
     return (
         <Container>
