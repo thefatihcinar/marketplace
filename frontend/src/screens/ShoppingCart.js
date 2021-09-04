@@ -1,6 +1,9 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import Message from '../components/Message'
+import { Link } from 'react-router-dom'
+import { Row, Col, Container, ListGroup, Image } from 'react-bootstrap'
 /* Actions */
 import { addToCart } from '../actions/cartActions';
 
@@ -16,8 +19,8 @@ const ShoppingCart = ({ match, location }) => {
 
     const dispatch = useDispatch();
 
-    let cart = useSelector( state => state.cart );
-    let { cartItems } = cart;
+    const cart = useSelector( state => state.cart );
+    const { cartItems } = cart;
 
     useEffect( () => {
         // dispatch the action addToProduct if a prouct has been added to the cart
@@ -27,9 +30,43 @@ const ShoppingCart = ({ match, location }) => {
     }, [dispatch, productId, quantity])
 
     return (
-        <div>
-            <span> THIS IS SHOPPING CART</span>
-        </div>
+        <Container>
+            <Row>
+                {/* Shopping Cart Items */}
+                <Col md={8}>
+                    <div className="shoppingCartTitle">
+                        <h1>Shopping Cart</h1>
+                    </div>
+                    {cartItems.length === 0 ? <Message theMessage="Your cart is empty."></Message>
+                    : <ListGroup variant="flush">
+                        {cartItems.map( (item) => (
+                            <ListGroup.Item key={item.product}>
+                                <Row>
+                                    <Col md={2}>
+                                        <Image src={item.image} alt={item.name} fluid rounded></Image>
+                                    </Col>
+                                    <Col md={5}>
+                                        <Link to={`/product/${item.product}`}>
+                                            {item.name}
+                                        </Link>
+                                    </Col>
+                                    <Col md={2}>${item.price}</Col>
+                                    <Col md={2}>{item.quantity}</Col>
+                                    <Col md={1}>
+                                        <Link to="/">
+                                            <i className="fas fa-trash"></i>
+                                        </Link>
+                                    </Col>
+                                </Row>
+                            </ListGroup.Item>
+                        ))}
+                    </ListGroup>}
+                </Col>
+                {/* Cart Total and Proceed to Checkout Part */}
+                <Col md={4}>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
