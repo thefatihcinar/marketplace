@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message'
 import { Link } from 'react-router-dom'
-import { Row, Col, Container, ListGroup, Image, Form } from 'react-bootstrap'
+import { Row, Col, Container, ListGroup, Image, Form, Button } from 'react-bootstrap'
 /* Actions */
 import { addToCart } from '../actions/cartActions';
 
@@ -28,6 +28,10 @@ const ShoppingCart = ({ match, location }) => {
             dispatch(addToCart(productId, quantity))
         }
     }, [dispatch, productId, quantity])
+
+    const removeFromCartHandler = (productIdToRemove) => {
+        console.log("remove")
+    };
 
     return (
         <Container>
@@ -63,9 +67,11 @@ const ShoppingCart = ({ match, location }) => {
                                         </Form.Control>
                                     </Col>
                                     <Col md={1}>
-                                        <Link to="/">
-                                            <i className="fas fa-trash"></i>
-                                        </Link>
+                                        <Button
+                                            variant="light"
+                                            onClick={() => removeFromCartHandler(item.product)}>
+                                            <i className="fas fa-trash"></i>        
+                                        </Button>
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
