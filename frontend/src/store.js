@@ -11,8 +11,18 @@ let reducers = combineReducers({
     cart: cartReducer
 });
 
+/* load the cart items when the application loads */
+let cartItemsFromLocalStorage = localStorage.getItem('cartItems')
+                                ? JSON.parse(localStorage.getItem('cartItems'))
+                                : [];
+
+/* initial state of the application is stored here */
+let initialState = {
+    cart: cartItemsFromLocalStorage
+};
+
 const middleware = [thunk]
 
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(...middleware)));
+const store = createStore(reducers, initialState, composeWithDevTools(applyMiddleware(...middleware)));
 
 export default store;
