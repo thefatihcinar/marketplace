@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 /* Actions */
 import { addToCart } from '../actions/cartActions';
 
@@ -15,6 +15,9 @@ const ShoppingCart = ({ match, location }) => {
     let quantity = location.search ? Number(location.search.split('=')[1]) : 1
 
     const dispatch = useDispatch();
+
+    let cart = useSelector( state => state.cart );
+    let { cartItems } = cart;
 
     useEffect( () => {
         // dispatch the action addToProduct if a prouct has been added to the cart
