@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message'
 import { Link } from 'react-router-dom'
-import { Row, Col, Container, ListGroup, Image } from 'react-bootstrap'
+import { Row, Col, Container, ListGroup, Image, Form } from 'react-bootstrap'
 /* Actions */
 import { addToCart } from '../actions/cartActions';
 
@@ -51,7 +51,17 @@ const ShoppingCart = ({ match, location }) => {
                                         </Link>
                                     </Col>
                                     <Col md={2}>${item.price}</Col>
-                                    <Col md={2}>{item.quantity}</Col>
+                                    <Col md={2}>
+                                        <Form.Control
+                                            as="select"
+                                            value={item.quantity}
+                                            onChange={(event) => (dispatch(addToCart(item.product, Number(event.target.value)))) }
+                                        >
+                                            {[...Array(item.countInStock).keys()].map( (index) => (
+                                                <option key={index+1} value={index+1}>{index+1}</option>
+                                            ))}
+                                        </Form.Control>
+                                    </Col>
                                     <Col md={1}>
                                         <Link to="/">
                                             <i className="fas fa-trash"></i>
