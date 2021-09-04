@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants';
 
-export const addToCart = (productId, quantity) => async(dispatch) => {
+export const addToCart = (productId, quantity) => async(dispatch, getState) => {
     /* this action creator adds a new item to the shopping cart
        it connects to the API to thet the product details and returns
        actions to add to the global state */
@@ -24,5 +24,7 @@ export const addToCart = (productId, quantity) => async(dispatch) => {
         type: CART_ADD_ITEM,
         payload : item 
     } )
+
+    localStorage.setItem('cartItems', JSON.stringify(getState.cart.cartItems));
 
 };
