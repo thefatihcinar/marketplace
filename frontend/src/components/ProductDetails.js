@@ -12,7 +12,7 @@ const ProductDetails = ({ history, match }) => {
 
     let productId = match.params.id; // Get the product id from the route
 
-    let [quantity, setQuantity] = useState(0);
+    let [quantity, setQuantity] = useState(1);
     /* this state stores the amount to buy *
 
     /* get the global state for this product */
