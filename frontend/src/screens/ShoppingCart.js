@@ -33,6 +33,10 @@ const ShoppingCart = ({ match, location }) => {
         console.log("remove")
     };
 
+    const checkOutHandler = () => {
+        history.push("/login?redirect=shipping");
+    };
+
     return (
         <Container>
             <Row>
@@ -87,6 +91,15 @@ const ShoppingCart = ({ match, location }) => {
                                     <h5>Subtotal ({cartItems.reduce( (acc, item) => acc + item.quantity ,0)}) items</h5>
                                 <div className="totalPriceTag">$ {cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</div>
                                 </div>
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <Button type="button" 
+                                        variant="dark"
+                                        className="btn col-12 btn-block" 
+                                        disabled={cartItems.length === 0}
+                                        onClick={checkOutHandler}>
+                                    Proceed to Checkout
+                                </Button>
                             </ListGroup.Item>
                         </ListGroup>
                     </Card>
