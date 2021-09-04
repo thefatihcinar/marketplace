@@ -16,7 +16,7 @@ const ShoppingCart = ({ match, location }) => {
     
     // parse the query string,  e.g. ?quantity=3   => splitted to '?quantity', '1'
     let quantity = location.search ? Number(location.search.split('=')[1]) : 1
-
+    
     const dispatch = useDispatch();
 
     const cart = useSelector( state => state.cart );
@@ -79,12 +79,13 @@ const ShoppingCart = ({ match, location }) => {
                     </ListGroup>}
                 </Col>
                 {/* Cart Total and Proceed to Checkout Part */}
-                <Col md={4}> 
+                <Col md={3}> 
                     <Card className="checkOutPart">
                         <ListGroup variant="flush">
                             <ListGroup.Item>
                                 <div className="subtotalItems">
                                     <h5>Subtotal ({cartItems.reduce( (acc, item) => acc + item.quantity ,0)}) items</h5>
+                                <div className="totalPriceTag">$ {cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}</div>
                                 </div>
                             </ListGroup.Item>
                         </ListGroup>

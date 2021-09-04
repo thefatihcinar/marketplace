@@ -36,5 +36,12 @@ a:link {
 }
 
 .subtotalItems{
-  text-align: center;
+  
+}
+
+.totalPriceTag{
+  padding: 0.4rem 0rem;
+  font: Arial;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
