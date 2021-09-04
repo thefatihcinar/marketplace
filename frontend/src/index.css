@@ -29,3 +29,12 @@ a:link {
 .shoppingCartTitle > h1 {
   font: bold 30px Arial;
 }
+
+.checkOutPart{
+  margin-top: 5rem;
+  padding: 0.2rem;
+}
+
+.subtotalItems{
+  text-align: center;
+}

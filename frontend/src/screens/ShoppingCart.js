@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message'
 import { Link } from 'react-router-dom'
-import { Row, Col, Container, ListGroup, Image, Form, Button } from 'react-bootstrap'
+import { Row, Col, Container, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 /* Actions */
 import { addToCart } from '../actions/cartActions';
 
@@ -79,7 +79,17 @@ const ShoppingCart = ({ match, location }) => {
                     </ListGroup>}
                 </Col>
                 {/* Cart Total and Proceed to Checkout Part */}
-                <Col md={4}>
+                <Col md={4}> 
+                    <Card className="checkOutPart">
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>
+                                <div className="subtotalItems">
+                                    <h5>Subtotal ({cartItems.reduce( (acc, item) => acc + item.quantity ,0)}) items</h5>
+                                </div>
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card>
+                    
                 </Col>
             </Row>
         </Container>
