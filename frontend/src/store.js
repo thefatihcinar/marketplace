@@ -14,7 +14,7 @@ let reducers = combineReducers({
 /* load the cart items when the application loads */
 let cartItemsFromLocalStorage = localStorage.getItem('cartItems')
                                 ? JSON.parse(localStorage.getItem('cartItems'))
-                                : [];
+                                : { cartItems: [] };
 
 /* initial state of the application is stored here */
 let initialState = {
