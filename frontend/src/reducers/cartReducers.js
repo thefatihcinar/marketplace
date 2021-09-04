@@ -6,8 +6,15 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
 
     switch (action.type) {
         case CART_ADD_ITEM:
-            
-            break;
+            let item = action.payload; // this is the items desired to be added
+            let exist = state.cartItems.find( cartItem => cartItem.product === item.product);
+            if(exist) {
+                // if the item alread exists in the shopping cart, override it
+                return {...state,
+                       cartItems: state.cartItems
+                            .map(cartItem => cartItem.product === exist.product ? item : cartItem)}
+            }
+            else return {...state, cartItems: [...state.cartItems, item]};
         case CART_REMOVE_ITEM:
             // TO- DO
             return state;
