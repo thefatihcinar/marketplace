@@ -85,7 +85,7 @@ const ShoppingCart = ({ match, location }) => {
                             <ListGroup.Item>
                                 <div className="subtotalItems">
                                     <h5>Subtotal ({cartItems.reduce( (acc, item) => acc + item.quantity ,0)}) items</h5>
-                                <div className="totalPriceTag">$ {cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}</div>
+                                <div className="totalPriceTag">$ {cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</div>
                                 </div>
                             </ListGroup.Item>
                         </ListGroup>
