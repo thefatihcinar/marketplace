@@ -19,3 +19,12 @@ main {
 a:link {
   text-decoration: none;
 }
+
+.shoppingCartTitle{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.shoppingCartTitle > h1 {
+  font: bold 30px Arial;
+}
