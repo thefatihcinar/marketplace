@@ -8,7 +8,7 @@ import { Row, Col, Container, ListGroup, Image, Form, Button, Card } from 'react
 import { addToCart } from '../actions/cartActions';
 
 
-const ShoppingCart = ({ match, location }) => {
+const ShoppingCart = ({ match, location, history }) => {
     /* first shopping cart component should process the incoming command
        the command is to add a product in the link to the shopping cart */
     
