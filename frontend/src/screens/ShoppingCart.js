@@ -5,7 +5,7 @@ import Message from '../components/Message'
 import { Link } from 'react-router-dom'
 import { Row, Col, Container, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 /* Actions */
-import { addToCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 
 
 const ShoppingCart = ({ match, location, history }) => {
@@ -30,7 +30,8 @@ const ShoppingCart = ({ match, location, history }) => {
     }, [dispatch, productId, quantity])
 
     const removeFromCartHandler = (productIdToRemove) => {
-        console.log("remove")
+
+        dispatch(removeFromCart(productIdToRemove))
     };
 
     const checkOutHandler = () => {
