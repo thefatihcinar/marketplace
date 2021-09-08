@@ -50,7 +50,21 @@ const authUser = asyncHandler( async (request, response) => {
 // @access  Private    
 const getUserProfile = asyncHandler(async (request, response) => {
     /* this function will give details about the user's profile */
-    response.send("ok")
+
+    const user = await User.findById(request.user._id);
+
+    if(user){
+        response.json({
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin
+        })
+    }
+    else{
+        response.status(404)
+        throw new Error("user not found");
+    }
 })
 
 export { authUser,getUserProfile }
