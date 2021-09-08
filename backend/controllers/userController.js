@@ -3,6 +3,7 @@
 
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
+import generateToken from '../utilities/generateToken.js';
 
 // @desc    authenticate a user 
 // @route   POST /api/users/login
@@ -28,7 +29,7 @@ const authUser = asyncHandler( async (request, response) => {
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
-            token: null
+            token: generateToken(user._id)
         });
     }
     else if (user){
@@ -44,5 +45,13 @@ const authUser = asyncHandler( async (request, response) => {
 
 })
 
-export { authUser }
+// @desc    get user's profile
+// @route   GET /api/users/profile
+// @access  Private    
+const getUserProfile = asyncHandler(async (request, response) => {
+    /* this function will give details about the user's profile */
+    response.send("ok")
+})
+
+export { authUser,getUserProfile }
 
