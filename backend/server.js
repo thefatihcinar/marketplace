@@ -19,6 +19,9 @@ connectDB()
 
 const app = express();
 
+/* Body Parser */
+app.use(express.json()); // it parses JSON body
+
 const PORT = process.env.PORT;
 
 app.listen(PORT || 5000, console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold));
