@@ -5,8 +5,8 @@ import colors from 'colors'
 import products from './data/products.js'
 import connectDB from './configurations/database.js'
 
-/* Routers */
-import productRouter from './routes/productRoutes.js'
+/* Routes */
+import productRoutes from './routes/productRoutes.js'
 
 /* Middleware */
 import notFound from './middleware/notFound.js'
@@ -28,8 +28,8 @@ app.listen(PORT || 5000, console.log(`Server is running in ${process.env.NODE_EN
 
 app.get("/", (request, response) => (response.send("The server is running.")));
 
-/* Use Routers */
-app.use("/api/products", productRouter);
+/* Use Routes */
+app.use("/api/products", productRoutes);
 
 /* Not Found Middleware */
 app.use(notFound);
