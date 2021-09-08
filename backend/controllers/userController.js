@@ -67,5 +67,49 @@ const getUserProfile = asyncHandler(async (request, response) => {
     }
 })
 
-export { authUser,getUserProfile }
+// @desc    register a new user
+// @route   POST /api/users
+// @access  Public
+const registerUser = asyncHandler(async (request, response) => {
+    /* this action creates a new user
+        i.e. Register */
+    let { name, email, password } = request.body;
+
+    // 1. Check whether user exists or not
+    let userExists = await User.findOne({ email: email });
+
+    if(userExists){
+        response.status(400)
+        throw new Error("user already exists")
+    }
+
+    // 2. User does not exist, create the user
+        // Check whether email is valid or not
+        const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+        if(!emailRegexp.test(email)){
+            response.status(400)
+            throw new Error("email not in the right format");
+        }
+        
+        let user = await User.create({name, email, password});
+
+        if(user){
+            // if there were no problems and the user has been created
+            response.status(201)
+            response.json({
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                token: generateToken(user._id)
+            })
+        }
+        else{
+            response.status(400);
+            throw new Error("invalid user data");
+        }
+
+})
+
+export { authUser,getUserProfile, registerUser }
 
