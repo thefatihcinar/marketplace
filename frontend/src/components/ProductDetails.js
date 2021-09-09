@@ -32,7 +32,7 @@ const ProductDetails = ({ history, match }) => {
     return (
         <Container>
             {loading ? (<Loader/>)
-             : error ? (<Message variant="danger" theMessage = {error}/>)
+             : error ? (<Message variant="danger">{error}</Message>)
              : (<Container>
                 <LinkContainer to='/'>
                     <Button variant='light' className='my-3 p-2'>

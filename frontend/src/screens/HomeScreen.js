@@ -23,7 +23,7 @@ const HomeScreen = () => {
             <Container>
                 <h1 className='mt-3'>Latest Products</h1>
                 {loading ? (<Loader/>)
-                :error ? (<Message variant = "danger" theMessage = {error}/>)
+                :error ? (<Message variant = "danger">{error}</Message>)
                 :(<Row>
                     {
                     products.map(product => (
