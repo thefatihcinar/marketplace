@@ -43,7 +43,7 @@ const LogIn = ( { history, location }) => {
 
     return (
         <FormContainer>
-            <h1 className="mt-2 mb-2">Sign In</h1>
+            <h1 className="mt-3 mb-3">Sign In</h1>
 
             {loading && <Loader/>}
             {error && <Message variant="danger">{error}</Message>}
@@ -67,7 +67,7 @@ const LogIn = ( { history, location }) => {
                     </Form.Control>
                 </Form.Group>
 
-                <Button type='submit' variant='primary' className="mt-2">
+                <Button type='submit' variant='primary' className="mt-3">
                     Sign In
                 </Button>
             </Form>
