@@ -18,7 +18,11 @@ const LogIn = ( { history, location }) => {
                      location.search.split("=")[1]
                      :'/';
 
-    const submitHandler = () => {};
+    const submitHandler = (event) => {
+        // Do not refresh the page
+        event.preventDefault();
+        
+    };
 
     
 
