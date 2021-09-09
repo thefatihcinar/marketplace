@@ -10,6 +10,12 @@ import { login } from '../actions/userActions'
 
 const LogIn = ( { history, location }) => {
 
+    const dispatch = useDispatch();
+
+    /* Fetch whether the user has logged in or not from redux */
+    const userLogin = useSelector(state => state.userLogin);
+    const { userInfo, loading, error } = userLogin;
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     /* in single-page applications, form values are stored as component level states */
@@ -18,10 +24,18 @@ const LogIn = ( { history, location }) => {
                      location.search.split("=")[1]
                      :'/';
 
+    useEffect(() => {
+        // When the compoent laods, 
+        // first check whether the user has already signed in or not
+        if(userInfo){
+            history.push(redirect);
+        }
+    }, [userInfo, history, redirect]);
+
     const submitHandler = (event) => {
         // Do not refresh the page
         event.preventDefault();
-        
+
     };
 
     
