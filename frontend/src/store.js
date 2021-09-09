@@ -4,11 +4,13 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 /* Import Reducers */
 import { productListReducer, productDetailsReducer } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
+import { userLoginReducer } from './reducers/userReducers'
 
 let reducers = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    userLogin: userLoginReducer
 });
 
 /* load the cart items when the application loads */
@@ -16,9 +18,14 @@ let cartItemsFromLocalStorage = localStorage.getItem('cartItems')
                                 ? { cartItems: JSON.parse(localStorage.getItem('cartItems'))}
                                 : { cartItems: [] };
 
+let userInfoFromLocalStorage = localStorage.getItem('userInfo')
+                               ? JSON.parse(localStorage.getItem('userInfo'))
+                               : null;
+
 /* initial state of the application is stored here */
 let initialState = {
-    cart: cartItemsFromLocalStorage
+    cart: cartItemsFromLocalStorage,
+    userLogin: { user: userInfoFromLocalStorage }
 };
 
 const middleware = [thunk]
