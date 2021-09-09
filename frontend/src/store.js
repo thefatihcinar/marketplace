@@ -25,7 +25,7 @@ let userInfoFromLocalStorage = localStorage.getItem('userInfo')
 /* initial state of the application is stored here */
 let initialState = {
     cart: cartItemsFromLocalStorage,
-    userLogin: { user: userInfoFromLocalStorage }
+    userLogin: { userInfo: userInfoFromLocalStorage }
 };
 
 const middleware = [thunk]
