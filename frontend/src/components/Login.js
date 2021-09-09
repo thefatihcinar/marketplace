@@ -8,13 +8,19 @@ import Loader from './Loader'
 import { login } from '../actions/userActions'
 
 
-const LogIn = () => {
+const LogIn = ( { history, location }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     /* in single-page applications, form values are stored as component level states */
 
+    const redirect = location.search ? 
+                     location.search.split("=")[1]
+                     :'/';
+
     const submitHandler = () => {};
+
+    
 
     return (
         <FormContainer>
@@ -45,7 +51,7 @@ const LogIn = () => {
 
             <Row className='py-3'>
                 <Col>
-                    New Customer?   <Link to='/'>Register Here</Link>
+                    New Customer?   <Link to={`/register?redirect=${redirect}`}>Register Here</Link>
                 </Col>
             </Row>
         </FormContainer>
