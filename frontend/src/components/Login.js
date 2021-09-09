@@ -43,6 +43,10 @@ const LogIn = ( { history, location }) => {
     return (
         <FormContainer>
             <h1 className="mt-2 mb-2">Sign In</h1>
+
+            {loading && <Loader/>}
+            {error && <Message variant="danger">{error}</Message>}
+
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='email'>
                     <Form.Label>E-Mail Address</Form.Label>
