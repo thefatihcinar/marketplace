@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'
 const FormContainer = ( { children } ) => {
     return (
         <Container>
-            <Row className='justify-content-md-centered'>
+            <Row className='justify-content-md-center'>
                 <Col sm={12} md={6}>
                     {children}
                 </Col>
