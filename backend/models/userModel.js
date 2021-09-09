@@ -33,7 +33,7 @@ userSchema.pre('save', async function(next){
 userSchema.post('save', function(createdDocument, next){
     /* this piece of mongoose middleware will
         warn the console when a new user registers */
-    console.log(createdDocument);
+   
     next();
 })
 
