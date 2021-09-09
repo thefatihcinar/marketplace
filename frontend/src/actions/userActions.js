@@ -6,7 +6,10 @@ import {
     USER_LOGOUT,
     USER_REGISTER_REQUEST,
     USER_REGISTER_SUCCESS,
-    USER_REGISTER_FAILURE
+    USER_REGISTER_FAILURE,
+    USER_DETAILS_REQUEST,
+    USER_DETAILS_SUCCESS,
+    USER_DETAILS_FAILURE
 }
 from '../constants/userConstants'
 
@@ -87,5 +90,36 @@ export const register = (name, email, password) => async(dispatch) => {
                              ? error.response.data.message
                              : error.message
         } );
+    }
+}
+
+export const getUserDetails = (id) => async(dispatch, getState) => {
+    /* this action creator is responsible for getting the 
+       user details */
+    try {
+        /* api route is actually /api/users/profile */
+
+        // get the token to make the api communication
+        const { userLogin: { userInfo } } = getState();
+
+        dispatch( { type: USER_DETAILS_REQUEST} );
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        let { data } = await axios.get(`/api/users/${id}`, config);
+
+        dispatch( { type: USER_DETAILS_SUCCESS, payload: data } )
+
+    } catch (error) {
+        dispatch( { type: USER_DETAILS_FAILURE,
+                    payload: error.response && error.response.data.message
+                             ? error.response.data.message  
+                             : error.message        
+        } )
     }
 }
