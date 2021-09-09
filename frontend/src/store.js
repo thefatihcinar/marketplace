@@ -4,14 +4,15 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 /* Import Reducers */
 import { productListReducer, productDetailsReducer } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
-import { userLoginReducer, userRegisterReducer } from './reducers/userReducers'
+import { userDetailsReducer, userLoginReducer, userRegisterReducer } from './reducers/userReducers'
 
 let reducers = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
     cart: cartReducer,
     userLogin: userLoginReducer,
-    userRegister: userRegisterReducer
+    userRegister: userRegisterReducer,
+    userDetails: userDetailsReducer
 });
 
 /* load the cart items when the application loads */
