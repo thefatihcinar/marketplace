@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom'
 import ProductDetails from './components/ProductDetails'
 import ShoppingCart from './screens/ShoppingCart'
 import Login from './components/Login'
+import Register from './components/Register'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Header></Header>
       <Route path = '/' component = {HomeScreen} exact></Route>
       <Route path = '/login' component = {Login}></Route>
+      <Route path = '/register' component = {Register}></Route>
       <Route path = '/product/:id' component = {ProductDetails} ></Route>
       <Route path = '/cart/:id?' component = {ShoppingCart}></Route>
       <Footer></Footer>
