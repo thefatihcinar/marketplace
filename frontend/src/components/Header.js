@@ -1,5 +1,5 @@
 import React from 'react'
-import {Navbar, Nav, Container} from 'react-bootstrap'
+import {Navbar, Nav, Container, NavDropdown} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 import CartItemsCountIndicator from './CartItemsCountIndicator';
 import { useSelector, useDispatch } from 'react-redux'
@@ -14,6 +14,10 @@ const Header = () => {
 
     let userLogin = useSelector(state => state.userLogin)
     let { userInfo } = userLogin
+
+    const logoutHandler = () => {
+        
+    }
 
     return (
        <header>
@@ -33,13 +37,24 @@ const Header = () => {
                             </Nav.Link>
                         </LinkContainer>
                         <CartItemsCountIndicator count={countItemsInCart}/>
-                        <LinkContainer to = '/login'>
-                            <Nav.Link>
-                                <i className='fas fa-user'></i>
-                                <span> </span>
-                                Sign In
-                            </Nav.Link>
-                        </LinkContainer>
+                        {userInfo
+                         ? <NavDropdown title={userInfo.name} id='username'>
+                                <LinkContainer to='/profile'>
+                                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                                </LinkContainer>
+                                <NavDropdown.Item onClick={logoutHandler}>
+                                    Logout
+                                    </NavDropdown.Item>
+                           </NavDropdown>
+                         : <LinkContainer to = '/login'>
+                                <Nav.Link>
+                                    <i className='fas fa-user'></i>
+                                    <span> </span>
+                                    Sign In
+                                </Nav.Link>
+                            </LinkContainer>
+                        }
+                        
                     </Nav>
                 </Container>
             </Navbar>
