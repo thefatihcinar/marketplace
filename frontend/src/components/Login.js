@@ -35,7 +35,8 @@ const LogIn = ( { history, location }) => {
     const submitHandler = (event) => {
         // Do not refresh the page
         event.preventDefault();
-
+        
+        dispatch( login(email, password) )
     };
 
     
