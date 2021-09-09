@@ -111,5 +111,50 @@ const registerUser = asyncHandler(async (request, response) => {
 
 })
 
-export { authUser,getUserProfile, registerUser }
+// @ desc   Update user
+// @ route  PUT /api/users/profile
+// @ access Private    
+const updateUserProfile = asyncHandler (async (request, response) => {
+    /* this action gets new information about the user
+        and updates the changed fields, 
+        unchanged fields remain the same */
+    
+    let user = await User.findById(request.user._id);
+    
+    if(request.user){
+        // if the user exists, comes from the middleware
+
+        const { newPassword: password, newEmail: email, newName: name } = request.body;
+
+        // these data field might be unchanged, so check this
+        
+        user.name = request.body.name || user.name;
+        user.email = request.body.email || user.email;
+        if(request.body.password){
+            user.password = request.body.password;  // automatically hashed
+        }
+
+        const updatedUser = await user.save();
+
+        console.log("updated user");
+        console.log(updatedUser);
+
+        response.status(200)
+        response.json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin
+        })
+    }
+    else{
+        response.status(404)
+        throw new Error("user not found");
+    }
+
+
+    
+} )  
+
+export { authUser,getUserProfile, registerUser, updateUserProfile }
 
