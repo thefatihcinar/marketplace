@@ -3,10 +3,14 @@ import {Navbar, Nav, Container, NavDropdown} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 import CartItemsCountIndicator from './CartItemsCountIndicator';
 import { useSelector, useDispatch } from 'react-redux'
+/* Actions */
+import { logout } from '../actions/userActions'
 
 const brandName = 'Rocket Store';
 
 const Header = () => {
+
+    const dispatch = useDispatch();
 
     let cart = useSelector(state => state.cart)
     let { cartItems } = cart
@@ -16,7 +20,7 @@ const Header = () => {
     let { userInfo } = userLogin
 
     const logoutHandler = () => {
-        
+        dispatch( logout() )
     }
 
     return (
