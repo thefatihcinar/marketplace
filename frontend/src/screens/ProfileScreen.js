@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Form, Button, Container } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { getUserDetails, resetUserDetails, userUpdateProfile } from '../actions/userActions'
+import { getUserDetails, userUpdateProfile } from '../actions/userActions'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 
