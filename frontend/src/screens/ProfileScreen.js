@@ -58,14 +58,14 @@ const ProfileScreen = ( { history } ) => {
             <Row className="justify-content-md-center">
                 {/* Update User Profile*/}
                 <Col sm={12} md={3}>
-                    <h2>User Profile</h2>
+                    <h2 className="mt-4 mb-4">User Profile</h2>
                     {loading && <Loader/>}
                     {error && <Message variant="danger">{error}</Message>}
                     {message && <Message variant="danger">{message}</Message>}
                     {!loading
                      ?
                      <Form onSubmit={submitHandler}>
-                        <Form.Group controlId="name">
+                        <Form.Group controlId="name" className="mb-2">
                             <Form.Label>Name</Form.Label>
                             <Form.Control
                                 type="text"
@@ -74,7 +74,7 @@ const ProfileScreen = ( { history } ) => {
                                 onChange={(e) => (setName(e.target.value))}
                             />
                         </Form.Group>
-                        <Form.Group controlId="email">
+                        <Form.Group controlId="email" className="mb-2">
                             <Form.Label>Email</Form.Label>
                             <Form.Control
                                 type="email"
@@ -83,7 +83,7 @@ const ProfileScreen = ( { history } ) => {
                                 onChange={(e) => (setEmail(e.target.value))}
                             />
                         </Form.Group>
-                        <Form.Group controlId="password">
+                        <Form.Group controlId="password" className="mb-2">
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 type="password"
@@ -92,7 +92,7 @@ const ProfileScreen = ( { history } ) => {
                                 onChange={(e) => (setPassword(e.target.value))}
                             />
                         </Form.Group>
-                        <Form.Group controlId="confirmPassword">
+                        <Form.Group controlId="confirmPassword" className="mb-2">
                             <Form.Label>Confirm Password</Form.Label>
                             <Form.Control
                                 type="password"
