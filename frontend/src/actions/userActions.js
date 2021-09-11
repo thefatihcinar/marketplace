@@ -10,7 +10,11 @@ import {
     USER_DETAILS_REQUEST,
     USER_DETAILS_SUCCESS,
     USER_DETAILS_FAILURE,
-    USER_DETAILS_RESET
+    USER_DETAILS_RESET,
+    USER_UPDATE_PROFILE_FAILURE,
+    USER_UPDATE_PROFILE_SUCCESS,
+    USER_UPDATE_PROFILE_REQUEST,
+    USER_UPDATE_PROFILE_RESET
 }
 from '../constants/userConstants'
 
@@ -56,6 +60,13 @@ export const logout = () => (dispatch) => {
     
     /* also remove the user details as well */
     
+    dispatch( { type: USER_DETAILS_RESET } )
+    dispatch( { type: USER_UPDATE_PROFILE_RESET } )
+}
+
+export const resetUserDetails = () => async(dispatch) =>{
+    /* this action creator resets the user details in the redux system */
+
     dispatch( { type: USER_DETAILS_RESET } )
 }
 
@@ -126,5 +137,46 @@ export const getUserDetails = (id) => async(dispatch, getState) => {
                              ? error.response.data.message  
                              : error.message        
         } )
+    }
+}
+
+
+export const userUpdateProfile = (user) => async(dispatch, getState) => {
+    /* this action creator is responsible for updating the user */
+
+    try {
+        
+        dispatch( { type: USER_UPDATE_PROFILE_REQUEST } )
+
+        /* Since this update opreation requires token in the backend 
+           get the token */
+        
+        // get the token to make the api communication
+        const { userLogin: { userInfo } } = getState();
+
+        let config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${userInfo.token}`
+            }
+        }
+
+        let { data } = await axios.put('/api/users/profile', user, config);
+
+        dispatch( { type: USER_UPDATE_PROFILE_SUCCESS, payload: data} ) 
+
+        /* Now also dispatch the action GET_USER_DETAILS again to update the system */
+
+        let { data: updatedUserDetails } = await axios.get(`/api/users/profile`, config);
+
+        dispatch( { type: USER_DETAILS_SUCCESS, payload: updatedUserDetails } )
+        
+
+    } catch (error) {
+        
+        dispatch( { type: USER_UPDATE_PROFILE_FAILURE,
+                    payload: error.response && error.response.data.message 
+                             ? error.response.data.message
+                             : error.message} )
     }
 }
