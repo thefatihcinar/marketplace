@@ -107,7 +107,7 @@ const ProfileScreen = ( { history } ) => {
                                     Update
                         </Button>
                     </Form>
-                    :<Loader/>
+                    :<div></div>
                     }
                 </Col>
                 {/* Orders */}
