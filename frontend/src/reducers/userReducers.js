@@ -41,7 +41,7 @@ export const userRegisterReducer = (state = {} , action) => {
     }
 }
 
-export const userDetailsReducer = (state = { user: {} }, action) => {
+export const userDetailsReducer = (state = {}, action) => {
     /* this reducer is responsible for state management of
        the user details in the application */
     switch (action.type) {
