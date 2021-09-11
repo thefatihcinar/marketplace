@@ -9,7 +9,8 @@ import {
     USER_REGISTER_FAILURE,
     USER_DETAILS_REQUEST,
     USER_DETAILS_SUCCESS,
-    USER_DETAILS_FAILURE
+    USER_DETAILS_FAILURE,
+    USER_DETAILS_RESET
 }
 from '../constants/userConstants'
 
@@ -52,6 +53,10 @@ export const logout = () => (dispatch) => {
     localStorage.removeItem('userInfo');
 
     dispatch( { type: USER_LOGOUT} )
+    
+    /* also remove the user details as well */
+    
+    dispatch( { type: USER_DETAILS_RESET } )
 }
 
 export const register = (name, email, password) => async(dispatch) => {
