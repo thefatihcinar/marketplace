@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Form, Button, Container } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { getUserDetails } from '../actions/userActions'
+import { getUserDetails, resetUserDetails, userUpdateProfile } from '../actions/userActions'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 
@@ -23,6 +23,10 @@ const ProfileScreen = ( { history } ) => {
        because if the user is not logged in, do not display this page */
     const userLogin = useSelector ( state => state.userLogin);
     const { userInfo } = userLogin;
+
+    /* Also load the userUpdateProfile global state 
+       after having updated, need to render everything accordingly */
+    let { success } = useSelector( state => state.userUpdateProfile );
 
     useEffect( () => {
         if(!userInfo){
@@ -48,12 +52,15 @@ const ProfileScreen = ( { history } ) => {
 
         event.preventDefault();
 
-        setMessage("")
-
-        // DISPATCH: UPDATE USER PROFILE
-    }
-
+        if(confirmPassword !== password){
+            setMessage("Passwords do not match.");
+        }
+        else{
+            dispatch(userUpdateProfile( {_id: user._id, name, email, password } ))
+        }
+  }
     return (
+
         <Container>
             <Row className="justify-content-md-center">
                 {/* Update User Profile*/}
@@ -61,6 +68,7 @@ const ProfileScreen = ( { history } ) => {
                     <h2 className="mt-4 mb-4">User Profile</h2>
                     {loading && <Loader/>}
                     {error && <Message variant="danger">{error}</Message>}
+                    {success && <Message variant="success">Profile Updated</Message>}
                     {message && <Message variant="danger">{message}</Message>}
                     {!loading
                      ?
