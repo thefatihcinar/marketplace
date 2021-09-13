@@ -10,7 +10,7 @@ const PaymentMethod = ( { history } ) => {
     /* First fetch the shipping address, make sure it is entered 
         for this component to work */
     
-    const { shippingAddress } = useSelector( state => state.cart);
+    const { shippingAddress, cartItems } = useSelector( state => state.cart);
 
     if(!shippingAddress || Object.keys(shippingAddress).length === 0){
         // if undefined, null or an empty address object
@@ -22,8 +22,9 @@ const PaymentMethod = ( { history } ) => {
     /* Fetch whether a user has been authenticated or not in order to show this component */
     const { userInfo } = useSelector( state => state.userLogin);
     
-    if(!userInfo){
+    if(!userInfo || cartItems.length === 0){
         /* if there is not an authenticated user, redirect to log in */
+        /* or if there aren't any items in the shopping cart, redirect to log in */
         history.push("/login");
     }
 
