@@ -12,6 +12,7 @@ import Register from './components/Register'
 import ProfileScreen from './screens/ProfileScreen'
 import Shipping from './components/Shipping'
 import PaymentMethod from './components/PaymentMethod'
+import PlaceOrder from './components/PlaceOrder'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path = '/profile' component={ProfileScreen}></Route>
       <Route path= '/shipping' component={Shipping}></Route>
       <Route path="/payment" component={PaymentMethod}></Route>
+      <Route path="/placeorder" component={PlaceOrder}></Route>
       <Route path = '/product/:id' component = {ProductDetails} ></Route>
       <Route path = '/cart/:id?' component = {ShoppingCart}></Route>
       <Footer></Footer>
