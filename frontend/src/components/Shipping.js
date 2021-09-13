@@ -7,6 +7,14 @@ import CheckoutSteps from './CheckoutSteps'
 
 const Shipping = ( { history } ) => {
 
+    /* Fetch whether a user has been authenticated or not in order to show this component */
+    const { userInfo } = useSelector( state => state.userLogin);
+    
+    if(!userInfo){
+        /* if there is not an authenticated user, redirect to log in */
+        history.push("/login");
+    }
+
     const dispatch = useDispatch();
 
     const cart = useSelector( state => state.cart );
