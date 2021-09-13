@@ -9,9 +9,13 @@ const Shipping = ( { history } ) => {
 
     /* Fetch whether a user has been authenticated or not in order to show this component */
     const { userInfo } = useSelector( state => state.userLogin);
+
+    /* Fetch cart items in order to check */
+    const { cartItems } = useSelector( state => state.cart);
     
-    if(!userInfo){
+    if(!userInfo || cartItems.length === 0){
         /* if there is not an authenticated user, redirect to log in */
+        /* or if there aren't any items in the shopping cart */
         history.push("/login");
     }
 
