@@ -19,16 +19,21 @@ let reducers = combineReducers({
 
 /* load the cart items when the application loads */
 let cartItemsFromLocalStorage = localStorage.getItem('cartItems')
-                                ? { cartItems: JSON.parse(localStorage.getItem('cartItems'))}
-                                : { cartItems: [] };
+                                ? JSON.parse(localStorage.getItem('cartItems'))
+                                : [];
 
 let userInfoFromLocalStorage = localStorage.getItem('userInfo')
                                ? JSON.parse(localStorage.getItem('userInfo'))
                                : null;
 
+let shippingAddressFromLocalStorage = localStorage.getItem('shippingAddress') 
+                                      ? JSON.parse( localStorage.getItem('shippingAddress') )
+                                      : { };
+
 /* initial state of the application is stored here */
 let initialState = {
-    cart: cartItemsFromLocalStorage,
+    cart: { cartItems: cartItemsFromLocalStorage, 
+            shippingAddress: shippingAddressFromLocalStorage},
     userLogin: { userInfo: userInfoFromLocalStorage }
 };
 

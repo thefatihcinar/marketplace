@@ -1,5 +1,8 @@
 import axios from 'axios'
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants';
+import { CART_ADD_ITEM, 
+         CART_REMOVE_ITEM,
+         CART_SAVE_SHIPPING_ADDRESS
+        } from '../constants/cartConstants';
 
 export const addToCart = (productId, quantity) => async(dispatch, getState) => {
     /* this action creator adds a new item to the shopping cart
@@ -37,4 +40,14 @@ export const removeFromCart = (productId) => async(dispatch, getState) => {
     dispatch( { type: CART_REMOVE_ITEM, payload: productId } )
 
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+}
+
+export const saveShippingAddress = (address) => async(dispatch) => {
+    /* this action creator is responsible for remembering / keeping the 
+       address entered by the user
+    */
+    dispatch( { type: CART_SAVE_SHIPPING_ADDRESS, payload: address} );
+
+    // Also keep it in local storage
+    localStorage.setItem('shippingAddress' , JSON.stringify(address));
 }
