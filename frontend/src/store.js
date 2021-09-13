@@ -30,10 +30,14 @@ let shippingAddressFromLocalStorage = localStorage.getItem('shippingAddress')
                                       ? JSON.parse( localStorage.getItem('shippingAddress') )
                                       : { };
 
+let paymentMethodFromLocalStorage = localStorage.getItem("paymentMethod") ?? "PayPal" ;
+
 /* initial state of the application is stored here */
 let initialState = {
     cart: { cartItems: cartItemsFromLocalStorage, 
-            shippingAddress: shippingAddressFromLocalStorage},
+            shippingAddress: shippingAddressFromLocalStorage,
+            paymentMethod: paymentMethodFromLocalStorage
+        },
     userLogin: { userInfo: userInfoFromLocalStorage }
 };
 

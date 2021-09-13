@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { CART_ADD_ITEM, 
          CART_REMOVE_ITEM,
-         CART_SAVE_SHIPPING_ADDRESS
+         CART_SAVE_SHIPPING_ADDRESS,
+         CART_SAVE_PAYMENT_METHOD
         } from '../constants/cartConstants';
 
 export const addToCart = (productId, quantity) => async(dispatch, getState) => {
@@ -50,4 +51,13 @@ export const saveShippingAddress = (address) => async(dispatch) => {
 
     // Also keep it in local storage
     localStorage.setItem('shippingAddress' , JSON.stringify(address));
+}
+
+export const savePaymentMethod = (paymentMethod) => async(dispatch) => {
+    /* this action creator remembers the chosen payment method globally */
+    
+    dispatch( { type: CART_SAVE_PAYMENT_METHOD, payload: paymentMethod} )
+
+    /* also store the payment method in local storage as well */
+    localStorage.setItem("paymentMethod", paymentMethod);
 }
