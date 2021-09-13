@@ -10,6 +10,7 @@ import ShoppingCart from './screens/ShoppingCart'
 import Login from './components/Login'
 import Register from './components/Register'
 import ProfileScreen from './screens/ProfileScreen'
+import Shipping from './components/Shipping'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path = '/login' component = {Login}></Route>
       <Route path = '/register' component = {Register}></Route>
       <Route path = '/profile' component={ProfileScreen}></Route>
+      <Route path= '/shipping' component={Shipping}></Route>
       <Route path = '/product/:id' component = {ProductDetails} ></Route>
       <Route path = '/cart/:id?' component = {ShoppingCart}></Route>
       <Footer></Footer>
