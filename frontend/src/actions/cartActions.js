@@ -2,7 +2,8 @@ import axios from 'axios'
 import { CART_ADD_ITEM, 
          CART_REMOVE_ITEM,
          CART_SAVE_SHIPPING_ADDRESS,
-         CART_SAVE_PAYMENT_METHOD
+         CART_SAVE_PAYMENT_METHOD,
+         CART_CLEAR_EVERYTHING
         } from '../constants/cartConstants';
 
 export const addToCart = (productId, quantity) => async(dispatch, getState) => {
@@ -43,6 +44,12 @@ export const removeFromCart = (productId) => async(dispatch, getState) => {
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
 
+export const cleartEverythingAboutCart = () => async(dispatch) => {
+    /* this action creator is responsible for clearing up the shopping cart */
+
+    dispatch( { type: CART_CLEAR_EVERYTHING } );
+}
+
 export const saveShippingAddress = (address) => async(dispatch) => {
     /* this action creator is responsible for remembering / keeping the 
        address entered by the user
@@ -61,3 +68,4 @@ export const savePaymentMethod = (paymentMethod) => async(dispatch) => {
     /* also store the payment method in local storage as well */
     localStorage.setItem("paymentMethod", paymentMethod);
 }
+
