@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { CART_CLEAR_EVERYTHING } from '../constants/cartConstants';
 import {
     USER_LOGIN_FAILURE,
     USER_LOGIN_REQUEST,
@@ -62,6 +63,8 @@ export const logout = () => (dispatch) => {
     
     dispatch( { type: USER_DETAILS_RESET } )
     dispatch( { type: USER_UPDATE_PROFILE_RESET } )
+
+    dispatch( { type: CART_CLEAR_EVERYTHING })
 }
 
 export const resetUserDetails = () => async(dispatch) =>{
