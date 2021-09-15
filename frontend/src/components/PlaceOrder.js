@@ -143,10 +143,10 @@ const PlaceOrder = ( { history } ) => {
                             <ListGroup.Item className="mt-1 p-1 align-items-center">
                                 <Button type="button" 
                                         variant='dark' 
-                                        className="btn-block"
+                                        className="col-12"
                                         disabled={cart.cartItems.length === 0}
                                         onClick="placeOrderHandler">
-                                            Proceed to Checkout</Button>
+                                            Place Order</Button>
                             </ListGroup.Item>
                         </ListGroup>
                     </Card>
