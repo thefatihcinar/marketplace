@@ -27,6 +27,31 @@ const PlaceOrder = ( { history } ) => {
         history.push("/");
     }
 
+    /* Calculate the shipping price, the tax price and the total price */
+
+    if(cart.cartItems.length !== 0){
+
+        /* if there is at least one item in the shopping cart */
+        cart.itemsPrice = cart.cartItems.reduce((acc, item) => (acc + item.price * item.quantity) , 0);
+        cart.itemsPrice = Number(cart.itemsPrice.toFixed(2));
+        
+        cart.shippingPrice = cart.itemsPrice >= 100.0 ? 0 : 10;
+        /* the cart total is greater than 100 dollars, free shipping, else 10 dollars shipping */
+
+        cart.taxPrice = Number((0.15 * (cart.itemsPrice)).toFixed(2)); // 15% taxation
+
+        cart.totalPrice = Number((cart.itemsPrice + cart.shippingPrice + cart.taxPrice ).toFixed(2));
+
+
+    }
+
+    const placeOrderHandler = (event) => {
+        /* this function is responsible for placing the order when clicked to the button */
+
+        event.preventDefault();
+
+        
+    }
 
     return (
         <Container>
@@ -84,6 +109,47 @@ const PlaceOrder = ( { history } ) => {
                             }        
                         </ListGroup.Item>
                     </ListGroup>
+                </Col>
+                <Col md={4}>
+                    <Card>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>
+                                <h2>Order Summary</h2>
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <Row>
+                                    <Col>Items</Col>
+                                    <Col>${cart.itemsPrice}</Col> 
+                                </Row>
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <Row>
+                                    <Col>Shipping</Col>
+                                    <Col>${cart.shippingPrice}</Col>
+                                </Row>
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <Row>
+                                    <Col>Tax</Col>
+                                    <Col>${cart.taxPrice}</Col>
+                                </Row>
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <Row>
+                                    <Col>Total</Col>
+                                    <Col>${cart.totalPrice}</Col>
+                                </Row>
+                            </ListGroup.Item>
+                            <ListGroup.Item className="mt-1 p-1 align-items-center">
+                                <Button type="button" 
+                                        variant='dark' 
+                                        className="btn-block"
+                                        disabled={cart.cartItems.length === 0}
+                                        onClick="placeOrderHandler">
+                                            Proceed to Checkout</Button>
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card>
                 </Col>
             </Row>
         </Container>
