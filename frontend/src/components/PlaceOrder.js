@@ -156,6 +156,7 @@ const PlaceOrder = ( { history } ) => {
                                 </Row>
                             </ListGroup.Item>
                             {loading && <Loader/>}
+                            {error && <Message variant="danger">error</Message>}
                             <ListGroup.Item className="mt-1 p-1 align-items-center">
                                 <Button type="button" 
                                         variant='dark' 
