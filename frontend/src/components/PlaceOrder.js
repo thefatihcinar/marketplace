@@ -5,13 +5,18 @@ import { Link } from 'react-router-dom'
 import Message from './Message'
 import CheckoutSteps from './CheckoutSteps'
 import './PlaceOrder.css'
+/* Actions */
+import { createOrder } from '../actions/orderActions'
 
 const PlaceOrder = ( { history } ) => {
+
+    const dispatch = useDispatch();
 
     const cart = useSelector( state => state.cart );
     const { userInfo } = useSelector( state => state.userLogin);
     const { paymentMethod } = cart;
     const { shippingAddress } = cart;
+
 
     /* If the shipping address is missing,
         or not a valid payment method is not found,
@@ -49,9 +54,13 @@ const PlaceOrder = ( { history } ) => {
         /* this function is responsible for placing the order when clicked to the button */
 
         event.preventDefault();
-
         
-    }
+        dispatch(createOrder( {
+            orderItems: cart.cartItems,
+            shippingAddress: cart.shippingAddress,
+            paymentMethod: cart.paymentMethod
+        } ));
+    }   
 
     return (
         <Container>
@@ -145,7 +154,7 @@ const PlaceOrder = ( { history } ) => {
                                         variant='dark' 
                                         className="col-12"
                                         disabled={cart.cartItems.length === 0}
-                                        onClick="placeOrderHandler">
+                                        onClick={placeOrderHandler}>
                                             Place Order</Button>
                             </ListGroup.Item>
                         </ListGroup>
