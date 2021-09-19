@@ -81,7 +81,9 @@ const createOrder = asyncHandler( async (request, response) => {
   
           itemsPrice += product.price * orderItem.quantity;
 
-         
+          /* Update product's stock */
+          product.countInStock = product.countInStock - orderItem.quantity;
+          await product.save();
       }
   
       let shippingPrice;
