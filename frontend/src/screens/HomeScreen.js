@@ -6,6 +6,7 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 /* Actions */
 import { listProducts } from '../actions/productActions'
+import { clearOrder } from '../actions/orderActions'
 
 const HomeScreen = () => {
 
@@ -16,6 +17,10 @@ const HomeScreen = () => {
     
     useEffect(() => {
         dispatch(listProducts())
+        
+        /* if the user have come here after having placed an order,
+           clear order from global state */
+        dispatch(clearOrder());
     }, [dispatch]);
 
     return (
