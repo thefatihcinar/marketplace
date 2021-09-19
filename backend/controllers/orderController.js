@@ -109,3 +109,5 @@ const createOrder = asyncHandler( async (request, response) => {
 
     response.status(201).json(newOrder);
 })
+
+export { createOrder }
