@@ -3,7 +3,8 @@ import { CART_CLEAR_EVERYTHING } from '../constants/cartConstants.js';
 import {
     ORDER_CREATE_REQUEST,
     ORDER_CREATE_SUCCESS,
-    ORDER_CREATE_FAILURE
+    ORDER_CREATE_FAILURE,
+    ORDER_CREATE_CLEAR
 } from '../constants/orderConstants.js'
 
 export const createOrder = (order) => async(dispatch, getState) =>  {
@@ -39,3 +40,8 @@ export const createOrder = (order) => async(dispatch, getState) =>  {
     }
 }
 
+export const clearOrder = () => async(dispatch) => {
+    /* this action creator is responsible for removing the global order create state */
+    
+    dispatch( { type: ORDER_CREATE_CLEAR } );
+}
