@@ -5,7 +5,7 @@ import {
 }
 from '../constants/orderConstants'
 
-const orderCreateReducer = (state = {}, action) => {
+export const orderCreateReducer = (state = {}, action) => {
     /* this reducer is responsible for handling the order state 
     throughout the application */
     switch (action.type) {
