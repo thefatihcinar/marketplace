@@ -61,8 +61,9 @@ const PlaceOrder = ( { history } ) => {
             /* if the operation has been successfull,
                redirect to the order details page */
             history.push(`/order/${order._id}`);
+            // eslint-disable-next-line
         }
-    }, [history, order._id, success])
+    }, [history, order, success])
 
     const placeOrderHandler = (event) => {
         /* this function is responsible for placing the order when clicked to the button */
@@ -167,7 +168,7 @@ const PlaceOrder = ( { history } ) => {
                                             <Loader/>
                                         </ListGroup.Item>}
                             {error && <ListGroup.Item>
-                                             <Message variant="danger">error</Message>
+                                             <Message variant="danger">{error}</Message>
                                       </ListGroup.Item>}
                             <ListGroup.Item className="mt-1 p-1 align-items-center">
                                 <Button type="button" 
