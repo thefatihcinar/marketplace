@@ -54,7 +54,7 @@ const createOrder = asyncHandler( async (request, response) => {
       let itemsPrice = 0;
   
       for(let orderItem of orderItems){
-          console.log(orderItem)
+          
           if(orderItem.quantity <= 0 || !Number.isInteger(orderItem.quantity)){
               // if a negative or decimal value has been entered for quantity 
               // do not let it
