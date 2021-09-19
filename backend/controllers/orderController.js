@@ -38,4 +38,14 @@ const createOrder = asyncHandler( async (request, response) => {
           throw new Error("no order items");
           return;
       }
+
+      /* Check whether payment method is supported */
+      let supportedPaymentMethods = ["PayPal"];
+  
+      if(!supportedPaymentMethods.includes(paymentMethod)){
+          // if this payment method is not supported
+          response.status(400);
+          throw new Error("payment method is not supported");
+          return;
+      }
 })
