@@ -65,6 +65,12 @@ const createOrder = asyncHandler( async (request, response) => {
   
           let product = await Product.findById(orderItem.product);
           
+          if(!product){
+              response.status(400);
+              throw new Error("product not found");
+              return;
+          }
+          
           // Check stock
           if(orderItem.quantity > product.countInStock){
               // if the amount is larger than the count in stock
@@ -74,6 +80,8 @@ const createOrder = asyncHandler( async (request, response) => {
           }
   
           itemsPrice += product.price * orderItem.quantity;
+
+         
       }
   
       let shippingPrice;
