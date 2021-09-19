@@ -48,4 +48,49 @@ const createOrder = asyncHandler( async (request, response) => {
           throw new Error("payment method is not supported");
           return;
       }
+
+      /* For each order item, fetch prices from database */
+  
+      let itemsPrice = 0;
+  
+      for(let orderItem in orderItems){
+  
+          if(orderItem.quantity <= 0 || !Number.isInteger(orderItem.quantity)){
+              // if a negative or decimal value has been entered for quantity 
+              // do not let it
+              response.status(400);
+              throw new Error("quantity must be a positive integer");
+              return
+          }
+  
+          let product = await Product.findById(orderItem.product);
+          
+          // Check stock
+          if(quantity > product.countInStock){
+              // if the amount is larger than the count in stock
+              response.status(400);
+              throw new Error("not enough products in stocks");
+              return;
+          }
+  
+          itemsPrice += product.price * orderItem.quantity;
+      }
+  
+      let shippingPrice;
+  
+      // Calculate the shipping price as well
+      if(itemsPrice >= 100){
+          shippingPrice = 0;
+      }
+      else{
+          shippingPrice = 10;
+      }
+  
+      // Calculate tax price, 15% tax rate
+      let taxPrice;
+      taxPrice = itemsPrice * 0.15;   
+  
+      // Total Price
+      let totalPrice;
+      totalPrice = itemsPrice + shippingPrice + taxPrice;
 })
