@@ -126,4 +126,37 @@ const createOrder = asyncHandler( async (request, response) => {
     response.status(201).json(newOrder);
 })
 
-export { createOrder }
+// @desc    get specific order by id
+// @route   GET /api/orders/:id
+// @access  private
+const getOrderById = asyncHandler( async (request, response) => {
+    /* this action returns a specific order requested by an id 
+        other than admin and this specific user, no one else should access this 
+        order */
+    let orderId = request.params.id;
+
+    try {
+        
+        let order = await Order.findById(orderId).populate("user", "name email");
+
+        if(!order){
+            /* if the order is null
+                in order words, not found */
+            response.status(404);
+            throw new Error("order not found");
+        }
+        
+        response.json(order);
+
+    } catch (error) {
+        /* there might have been a CastError or another error type
+            just say that it has not found */
+        
+        response.status(404);
+        throw new Error("order not found");
+
+    }
+    
+})
+
+export { createOrder, getOrderById }
