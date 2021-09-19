@@ -163,8 +163,12 @@ const PlaceOrder = ( { history } ) => {
                                     <Col>${cart.totalPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
-                            {loading && <Loader/>}
-                            {error && <Message variant="danger">error</Message>}
+                            {loading && <ListGroup.Item>
+                                            <Loader/>
+                                        </ListGroup.Item>}
+                            {error && <ListGroup.Item>
+                                             <Message variant="danger">error</Message>
+                                      </ListGroup.Item>}
                             <ListGroup.Item className="mt-1 p-1 align-items-center">
                                 <Button type="button" 
                                         variant='dark' 
