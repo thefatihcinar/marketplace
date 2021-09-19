@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { CART_CLEAR_EVERYTHING } from '../constants/cartConstants.js';
 import {
     ORDER_CREATE_REQUEST,
     ORDER_CREATE_SUCCESS,
@@ -25,6 +26,9 @@ export const createOrder = (order) => async(dispatch, getState) =>  {
         let { data } = await axios.post("/api/orders", order, config);
     
         dispatch( { type: ORDER_CREATE_SUCCESS, payload: data} );
+
+        /* Clear shopping cart after having placed the order */
+        dispatch( { type: CART_CLEAR_EVERYTHING } );
 
     } catch (error) {
         
