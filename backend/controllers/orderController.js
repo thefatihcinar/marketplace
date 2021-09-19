@@ -84,6 +84,12 @@ const createOrder = asyncHandler( async (request, response) => {
           /* Update product's stock */
           product.countInStock = product.countInStock - orderItem.quantity;
           await product.save();
+
+          /* Check & Update Order Items if Changed */
+          orderItem.name = product.name;
+          orderItem.price = product.price;
+          orderItem.countInStock = product.countInStock;
+          orderItem.image = product.image;
       }
   
       let shippingPrice;
