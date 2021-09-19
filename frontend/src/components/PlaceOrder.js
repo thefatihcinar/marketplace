@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Container, Row, Col, Button, ListGroup, Image, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -55,6 +55,14 @@ const PlaceOrder = ( { history } ) => {
 
 
     }
+
+    useEffect( () => {
+        if(success){
+            /* if the operation has been successfull,
+               redirect to the order details page */
+            history.push(`/order/${order._id}`);
+        }
+    }, [history, order._id, success])
 
     const placeOrderHandler = (event) => {
         /* this function is responsible for placing the order when clicked to the button */
