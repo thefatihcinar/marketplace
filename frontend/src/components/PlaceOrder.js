@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Container, Row, Col, Button, ListGroup, Image, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Message from './Message'
+import Loader from './Loader'
 import CheckoutSteps from './CheckoutSteps'
 import './PlaceOrder.css'
 /* Actions */
@@ -16,6 +17,11 @@ const PlaceOrder = ( { history } ) => {
     const { userInfo } = useSelector( state => state.userLogin);
     const { paymentMethod } = cart;
     const { shippingAddress } = cart;
+
+    /* Now call the global order state to track new order */
+
+    const orderCreate = useSelector( state => state.orderCreate);
+    const { order, success, error, loading } = orderCreate;
 
 
     /* If the shipping address is missing,
@@ -149,6 +155,7 @@ const PlaceOrder = ( { history } ) => {
                                     <Col>${cart.totalPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
+                            {loading && <Loader/>}
                             <ListGroup.Item className="mt-1 p-1 align-items-center">
                                 <Button type="button" 
                                         variant='dark' 
