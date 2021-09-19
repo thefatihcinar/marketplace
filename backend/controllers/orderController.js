@@ -93,4 +93,19 @@ const createOrder = asyncHandler( async (request, response) => {
       // Total Price
       let totalPrice;
       totalPrice = itemsPrice + shippingPrice + taxPrice;
+
+    // Add this order to the database
+  
+    let newOrder = await Order.create({
+        user: request.user._id,
+        orderItems,
+        shippingAddress,
+        paymentMethod,
+        itemsPrice,
+        taxPrice,
+        shippingPrice,
+        totalPrice
+    });
+
+    response.status(201).json(newOrder);
 })
