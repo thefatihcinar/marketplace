@@ -53,8 +53,8 @@ const createOrder = asyncHandler( async (request, response) => {
   
       let itemsPrice = 0;
   
-      for(let orderItem in orderItems){
-  
+      for(let orderItem of orderItems){
+          console.log(orderItem)
           if(orderItem.quantity <= 0 || !Number.isInteger(orderItem.quantity)){
               // if a negative or decimal value has been entered for quantity 
               // do not let it
@@ -66,7 +66,7 @@ const createOrder = asyncHandler( async (request, response) => {
           let product = await Product.findById(orderItem.product);
           
           // Check stock
-          if(quantity > product.countInStock){
+          if(orderItem.quantity > product.countInStock){
               // if the amount is larger than the count in stock
               response.status(400);
               throw new Error("not enough products in stocks");
